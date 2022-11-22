@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  base:
+    container_name: servidorbase
+    image: ub-base
+    build: 
+      context: ${DIR_DFILES}/ubuntu/base
+      dockerfile: ./ub-base-dockerfile
+    env_file: 
+    #   - ./environment.yml #NO lo coge
+      - ./.env #SI lo coge y hace falta especificarlo, porque sino no coge las variables de entorno
+    networks: 
+      netansible:
+          ipv4_address: 172.120.10.2
+networks: 
+  netansible:
+      ipam: 
+          driver: default
+          config: 
+              - subnet: 172.120.10.0/24 
