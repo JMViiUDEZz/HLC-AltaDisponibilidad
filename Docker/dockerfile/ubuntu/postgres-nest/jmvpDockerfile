@@ -1,0 +1,31 @@
+FROM ub-base
+
+RUN apt-get update -y && apt install -yq --no-install-recommends \
+    software-properties-common
+
+WORKDIR /var/www/html
+
+ARG USUARIO
+ARG PASSWD
+ARG TZ
+ARG REPO_GITHUB
+ARG URL_GITHUB
+
+ENV USUARIO=${USUARIO}
+ENV PASSWD=${PASSWD}
+ENV TZ=${TZ}
+ENV REPO_GITHUB=${REPO_GITHUB}
+ENV URL_GITHUB=${URL_GITHUB}
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+COPY ./nginx.conf /etc/nginx/conf.d/nginx.conf
+COPY ./start-apijmvpnest.sh /root
+RUN chmod +x /root/start-apijmvpnest.sh
+RUN dos2unix /root/start-apijmvpnest.sh
+
+EXPOSE 81
+
+RUN apt-get install nodejs nginx npm -y
+
+ENTRYPOINT [ "/root/start-apijmvpnest.sh" ]
