@@ -1,0 +1,51 @@
+[
+    {
+        "idea": "jmb3476",
+        "nombre": "Jose Antonio Morgado",
+        "email": "morgado@gmail.com",
+        "password": "1234",
+        "rol": "coordinador Tic"
+    },
+    {
+        "idea": "gin1234",
+        "nombre": "Gines Martínez",
+        "email": "gines@gmail.com",
+        "password": "1234",
+        "rol": "coordinador Tic"
+    },
+    {
+        "idea": "pil3425",
+        "nombre": "Pilar del Campo",
+        "email": "pilar@gmail.com",
+        "password": "1234",
+        "rol": "profesor"
+    },
+    {
+        "idea": "ang2617",
+        "nombre": "Ana Gonzalez",
+        "email": "anag@gmail.com",
+        "password": "1234",
+        "rol": "administrador"
+    },
+    {
+        "idea": "sof2132",
+        "nombre": "Sofía Fernández",
+        "email": "sofia@gmail.com",
+        "password": "1234",
+        "rol": "profesor"
+    },
+    {
+        "idea": "moi1134",
+        "nombre": "Moisés Barranco",
+        "email": "moises@gmail.com",
+        "password": "1234",
+        "rol": "coordinador Tic"
+    },
+    {
+        "idea": "jav3678",
+        "nombre": "Javier Sanchez",
+        "email": "javier@gmail.com",
+        "password": "1234",
+        "rol": "profesor"
+    }
+]

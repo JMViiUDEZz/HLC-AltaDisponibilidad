@@ -1,0 +1,79 @@
+[
+    {
+        "cod": "Proy1",
+        "nombre": "Proyector Samsung S1",
+        "tipo": "Proyector",
+        "anio": 2017,
+        "aula": "B3"
+    },
+    {
+        "cod": "Ord1",
+        "nombre": "Portatil Dell D1",
+        "tipo": "Ordenador",
+        "anio": 2020,
+        "aula": "B3"
+    },
+    {
+        "cod": "Proy2",
+        "nombre": "Proyector Nec N1",
+        "tipo": "Proyector",
+        "anio": 2017,
+        "aula": "B1"
+    },
+    {
+        "cod": "Ord2",
+        "nombre": "Portatil Lenovo L1",
+        "tipo": "Ordenador",
+        "anio": 2020,
+        "aula": "B1"
+    },
+    {
+        "cod": "Ord3",
+        "nombre": "Portatil Lenovo L2",
+        "tipo": "Ordenador",
+        "anio": 2020,
+        "aula": "B2"
+    },
+    {
+        "cod": "Proy3",
+        "nombre": "Proyector Nec N2",
+        "tipo": "Proyector",
+        "anio": 2018,
+        "aula": "B2"
+    },
+    {
+        "cod": "Piz1",
+        "nombre": "Pizarra Digital Promethean P1",
+        "tipo": "Pizarra Digital",
+        "anio": 2010,
+        "aula": "B2"
+    },
+    {
+        "cod": "Ord4",
+        "nombre": "Portatil Nec N3",
+        "tipo": "Ordenador",
+        "anio": 2020,
+        "aula": "C1"
+    },
+    {
+        "cod": "Proy4",
+        "nombre": "Proyector Samsung S2",
+        "tipo": "Proyector",
+        "anio": 2016,
+        "aula": "C1"
+    },
+    {
+        "cod": "Piz2",
+        "nombre": "Pizarra Digital Smart S1",
+        "tipo": "Pizarra Digital",
+        "anio": 2020,
+        "aula": "C1"
+    },
+    {
+        "cod": "Alt1",
+        "nombre": "Altavoces Lenovo A1",
+        "tipo": "Altavoces",
+        "anio": 2022,
+        "aula": "C1"
+    }
+]
