@@ -4,11 +4,11 @@ services:
       image: postgres:14.3
       restart: always
       ports:
-        - "${DBIN_PORT}:5432"
+        - "${DB_PORT}:5432"
       environment:
-        POSTGRES_USER: ${DBIN_USER}
-        POSTGRES_PASSWORD: ${DBIN_PASSWORD}
-        POSTGRES_DB: ${DBIN_NAME}
+        POSTGRES_USER: ${DB_USERNAME}
+        POSTGRES_PASSWORD: ${DB_PASSWORD}
+        POSTGRES_DB: ${DB_NAME}
       container_name: dbIncidenciasNest
       volumes:
         - ./postgresIncidenciasNest:/var/lib/postgresql/data
@@ -27,6 +27,14 @@ services:
        - PASSWD=${PASSWD}
        - REPO_GITHUB=${REPO_GITHUB}
        - URL_GITHUB=${URL_GITHUB}
+       - DB_HOST=${DB_HOST}
+       - DB_NAME=${DB_NAME}
+       - DB_USERNAME=${DB_USERNAME}
+       - DB_PASSWORD=${DB_PASSWORD}
+       - DB_PORT=${DB_PORT}
+       - PORT=${PORT}
+       - HOST_API=${HOST_API}
+       - JWT_SECRET=${JWT_SECRET}
     env_file: 
       - ./.env
     ports: 
