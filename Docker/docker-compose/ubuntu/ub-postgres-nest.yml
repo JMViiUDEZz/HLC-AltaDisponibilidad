@@ -1,0 +1,54 @@
+version: "3"
+services:
+  dbIncidenciasNest:
+      image: postgres:14.3
+      restart: always
+      ports:
+        - "${DB_PORT}:5432"
+      environment:
+        POSTGRES_USER: ${DB_USERNAME}
+        POSTGRES_PASSWORD: ${DB_PASSWORD}
+        POSTGRES_DB: ${DB_NAME}
+      container_name: dbIncidenciasNest
+      volumes:
+        - ./postgresIncidenciasNest:/var/lib/postgresql/data
+      networks: 
+          net_postgres-nest:
+              ipv4_address: 172.180.10.3
+  postgres-nest:
+    container_name: Postgres-nest
+    image: ub-postgres-nest
+    build: 
+      context: ${DIR_DFILES}/ubuntu/postgres-nest
+      dockerfile: ./ub-postgres-nest-dockerfile
+      args: 
+       - USUARIO=${USUARIO}
+       - TZ=${TZ}
+       - PASSWD=${PASSWD}
+       - REPO_GITHUB=${REPO_GITHUB}
+       - URL_GITHUB=${URL_GITHUB}
+       - DB_HOST=${DB_HOST}
+       - DB_NAME=${DB_NAME}
+       - DB_USERNAME=${DB_USERNAME}
+       - DB_PASSWORD=${DB_PASSWORD}
+       - DB_PORT=${DB_PORT}
+       - PORT=${PORT}
+       - HOST_API=${HOST_API}
+       - JWT_SECRET=${JWT_SECRET}
+    env_file: 
+      - ./.env
+    ports: 
+      - ${PN_PORT}:3000
+    volumes:
+      - ./nestIncidenciasNest:/var/www/html
+    networks: 
+      net_postgres-nest:
+          ipv4_address: 172.180.10.4
+    depends_on:
+      - dbIncidenciasNest
+networks: 
+  net_postgres-nest:
+      ipam: 
+          driver: default
+          config: 
+              - subnet: 172.180.10.0/24

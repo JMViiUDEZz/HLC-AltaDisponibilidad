@@ -1,0 +1,53 @@
+FROM ub-base
+
+RUN apt-get update -y && apt install -yq --no-install-recommends \
+    software-properties-common
+
+WORKDIR /var/www/html
+
+ARG USUARIO
+ARG PASSWD
+ARG TZ
+ARG REPO_GITHUB
+ARG URL_GITHUB
+ARG DB_HOST
+ARG DB_NAME
+ARG DB_USERNAME
+ARG DB_PASSWORD
+ARG DB_PORT
+ARG PORT
+ARG HOST_API
+ARG JWT_SECRET
+
+ENV USUARIO=${USUARIO}
+ENV PASSWD=${PASSWD}
+ENV TZ=${TZ}
+ENV REPO_GITHUB=${REPO_GITHUB}
+ENV URL_GITHUB=${URL_GITHUB}
+ENV DB_HOST=${DB_HOST}
+ENV DB_NAME=${DB_NAME}
+ENV DB_USERNAME=${DB_USERNAME}
+ENV DB_PASSWORD=${DB_PASSWORD}
+ENV DB_PORT=${DB_PORT}
+ENV PORT=${PORT}
+ENV HOST_API=${HOST_API}
+ENV JWT_SECRET=${JWT_SECRET}
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+COPY ./nginx.conf /etc/nginx/conf.d/nginx.conf
+
+COPY ./ub-base-postgres-nest-dev.sh /root
+RUN chmod +x /root/ub-base-postgres-nest-dev.sh
+RUN dos2unix /root/ub-base-postgres-nest-dev.sh
+
+COPY ./ub-base-postgres-nest-prod.sh /root
+RUN chmod +x /root/ub-base-postgres-nest-prod.sh
+RUN dos2unix /root/ub-base-postgres-nest-prod.sh
+
+EXPOSE 81
+
+RUN apt-get install nodejs nginx npm -y
+
+# ENTRYPOINT [ "/root/start-apijmvpnest.sh" ]
+ENTRYPOINT [ "/root/ub-base-postgres-nest-prod.sh" ]

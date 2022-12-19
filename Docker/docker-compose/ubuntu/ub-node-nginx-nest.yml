@@ -11,10 +11,19 @@ services:
        - TZ=${TZ}
        - PASSWD=${PASSWD}
        - REPO_GITHUB=${REPO_GITHUB}
+       - URL_GITHUB=${URL_GITHUB}
+       - DB_HOST=${DB_HOST}
+       - DB_NAME=${DB_NAME}
+       - DB_USERNAME=${DB_USERNAME}
+       - DB_PASSWORD=${DB_PASSWORD}
+       - DB_PORT=${DB_PORT}
+       - PORT=${PORT}
+       - HOST_API=${HOST_API}
+       - JWT_SECRET=${JWT_SECRET}
     env_file: 
       - ./.env
     ports: 
-      - ${N_PORT}:3000
+      - ${NNN_PORT}:3000
     networks: 
       net_node-nginx-nest:
           ipv4_address: 172.20.0.7
