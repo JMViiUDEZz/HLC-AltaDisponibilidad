@@ -26,7 +26,6 @@ PORT=$PORT
 HOST_API=$HOST_API
 
 JWT_SECRET=$JWT_SECRET" > .env
-    sed -i "s/5432/$DB_PORT/" src/app.module.ts
     npm run build
     cp -r /var/www/html/$REPO_GITHUB/dist /var/www/html/dist-$REPO_GITHUB
     npm run start:prod
