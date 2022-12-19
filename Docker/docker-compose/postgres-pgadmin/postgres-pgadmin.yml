@@ -1,0 +1,76 @@
+version: '3'
+services:
+ dbLibreria:
+   image: postgres:14.3
+   restart: always
+   ports:
+     - "${DBL_PORT}:5432"
+   environment:
+     POSTGRES_USER: ${DBL_USER}
+     POSTGRES_PASSWORD: ${DBL_PASSWORD}
+     POSTGRES_DB: ${DBL_NAME}
+   container_name: dbLibreria
+   volumes:
+     - ./postgresLibreria:/var/lib/postgresql/data
+   networks: 
+      net_postgres-pgadmin:
+          ipv4_address: 172.19.0.3
+
+ dbEntradasATuAlcance:
+   image: postgres:14.3
+   restart: always
+   ports:
+     - "${DBE_PORT}:5432"
+   environment:
+     POSTGRES_USER: ${DBE_USER}
+     POSTGRES_PASSWORD: ${DBE_PASSWORD}
+     POSTGRES_DB: ${DBE_NAME}
+   container_name: dbEntradasATuAlcance
+   volumes:
+     - ./postgresEntradasATuAlcance:/var/lib/postgresql/data
+   networks: 
+      net_postgres-pgadmin:
+          ipv4_address: 172.19.0.4
+
+ dbIncidencias:
+   image: postgres:14.3
+   restart: always
+   ports:
+     - "${DBI_PORT}:5432"
+   environment:
+     POSTGRES_USER: ${DBI_USER}
+     POSTGRES_PASSWORD: ${DBI_PASSWORD}
+     POSTGRES_DB: ${DBI_NAME}
+   container_name: dbIncidencias
+   volumes:
+     - ./postgresIncidencias:/var/lib/postgresql/data
+   networks: 
+      net_postgres-pgadmin:
+          ipv4_address: 172.19.0.5
+
+ pgAdmin:
+   image: dpage/pgadmin4
+   container_name: pgAdminPostgres
+   restart: always
+   environment:
+     PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+     PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+     PGADMIN_LISTEN_PORT: ${PGADMIN_LISTEN_PORT}
+   ports:
+     - 8080:80
+   volumes:
+     - /var/lib/pgadmin
+   depends_on:
+     - dbLibreria
+     - dbEntradasATuAlcance
+     - dbIncidencias
+   networks: 
+      net_postgres-pgadmin:
+          ipv4_address: 172.19.0.6
+
+networks: 
+  net_postgres-pgadmin:
+    ipam: 
+      driver: default
+      config: 
+        - subnet: 172.19.0.0/16

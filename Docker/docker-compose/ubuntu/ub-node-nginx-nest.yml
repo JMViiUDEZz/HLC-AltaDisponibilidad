@@ -1,0 +1,26 @@
+version: "3"
+services:
+  node-nginx-nest:
+    container_name: Node-nginx-nest
+    image: ub-node-nginx-nest
+    build: 
+      context: ${DIR_DFILES}/ubuntu/node-nginx-nest
+      dockerfile: ./ub-node-nginx-nest-dockerfile
+      args: 
+       - USUARIO=${USUARIO}
+       - TZ=${TZ}
+       - PASSWD=${PASSWD}
+       - REPO_GITHUB=${REPO_GITHUB}
+    env_file: 
+      - ./.env
+    ports: 
+      - ${N_PORT}:3000
+    networks: 
+      net_node-nginx-nest:
+          ipv4_address: 172.20.0.7
+networks: 
+  net_node-nginx-nest:
+      ipam: 
+          driver: default
+          config: 
+              - subnet: 172.20.0.0/16

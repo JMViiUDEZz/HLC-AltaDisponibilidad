@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  base:
+    container_name: Base
+    image: ub-base
+    build: 
+      context: ${DIR_DFILES}/ubuntu/base
+      dockerfile: ./ub-base-dockerfile
+    env_file: 
+      - ./.env
+    networks: 
+      net_base:
+          ipv4_address: 172.120.10.2
+networks: 
+  net_base:
+      ipam: 
+          driver: default
+          config: 
+              - subnet: 172.120.10.0/24 

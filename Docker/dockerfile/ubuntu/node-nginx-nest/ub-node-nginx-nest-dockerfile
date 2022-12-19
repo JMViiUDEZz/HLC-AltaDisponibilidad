@@ -1,0 +1,31 @@
+FROM ub-base
+
+RUN apt-get update -y && apt install -yq --no-install-recommends \
+    software-properties-common
+
+RUN mkdir -p /var/www/html/EntradasATuAlcance-Backend
+
+WORKDIR /var/www/html
+
+ARG USUARIO
+ARG PASSWD
+ARG TZ
+ARG REPO_GITHUB
+
+ENV USUARIO=${USUARIO}
+ENV PASSWD=${PASSWD}
+ENV TZ=${TZ}
+ENV REPO_GITHUB=${REPO_GITHUB}
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+COPY ./nginx.conf /etc/nginx/conf.d/nginx.conf
+COPY ./ub-node-nginx-nest.sh /root
+RUN chmod +x /root/ub-node-nginx-nest.sh
+RUN dos2unix /root/ub-node-nginx-nest.sh
+
+EXPOSE 81
+
+RUN apt-get install nodejs nginx php npm yarn -y
+
+ENTRYPOINT [ "/root/ub-node-nginx-nest.sh" ]
