@@ -9,6 +9,7 @@ ARG USUARIO
 ARG PASSWD
 ARG TZ
 ARG REPO_GITHUB
+ARG PN_PORT
 ARG URL_GITHUB
 ARG DB_HOST
 ARG DB_NAME
@@ -22,6 +23,7 @@ ARG JWT_SECRET
 ENV USUARIO=${USUARIO}
 ENV PASSWD=${PASSWD}
 ENV TZ=${TZ}
+ENV PN_PORT=${PN_PORT}
 ENV REPO_GITHUB=${REPO_GITHUB}
 ENV URL_GITHUB=${URL_GITHUB}
 ENV DB_HOST=${DB_HOST}
@@ -37,17 +39,17 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 COPY ./nginx.conf /etc/nginx/conf.d/nginx.conf
 
-COPY ./ub-base-postgres-nest-dev.sh /root
-RUN chmod +x /root/ub-base-postgres-nest-dev.sh
-RUN dos2unix /root/ub-base-postgres-nest-dev.sh
+COPY ./ub-postgres-nest-dev.sh /root
+RUN chmod +x /root/ub-postgres-nest-dev.sh
+RUN dos2unix /root/ub-postgres-nest-dev.sh
 
-COPY ./ub-base-postgres-nest-prod.sh /root
-RUN chmod +x /root/ub-base-postgres-nest-prod.sh
-RUN dos2unix /root/ub-base-postgres-nest-prod.sh
+COPY ./ub-postgres-nest-prod.sh /root
+RUN chmod +x /root/ub-postgres-nest-prod.sh
+RUN dos2unix /root/ub-postgres-nest-prod.sh
 
-EXPOSE 81
+EXPOSE $PN_PORT
 
 RUN apt-get install nodejs nginx npm -y
 
-# ENTRYPOINT [ "/root/start-apijmvpnest.sh" ]
-ENTRYPOINT [ "/root/ub-base-postgres-nest-prod.sh" ]
+# ENTRYPOINT [ "/root/ub-postgres-nest-dev.sh" ]
+ENTRYPOINT [ "/root/ub-postgres-nest-prod.sh" ]

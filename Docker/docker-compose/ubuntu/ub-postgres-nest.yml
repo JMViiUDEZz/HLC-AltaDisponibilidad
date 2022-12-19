@@ -1,6 +1,6 @@
 version: "3"
 services:
-  dbIncidenciasNest:
+  dbEntradasATuAlcanceNest:
       image: postgres:14.3
       restart: always
       ports:
@@ -9,9 +9,9 @@ services:
         POSTGRES_USER: ${DB_USERNAME}
         POSTGRES_PASSWORD: ${DB_PASSWORD}
         POSTGRES_DB: ${DB_NAME}
-      container_name: dbIncidenciasNest
+      container_name: dbEntradasATuAlcanceNest
       volumes:
-        - ./postgresIncidenciasNest:/var/lib/postgresql/data
+        - ./postgresEntradasATuAlcanceNest:/var/lib/postgresql/data
       networks: 
           net_postgres-nest:
               ipv4_address: 172.180.10.3
@@ -25,6 +25,7 @@ services:
        - USUARIO=${USUARIO}
        - TZ=${TZ}
        - PASSWD=${PASSWD}
+       - PN_PORT=${PN_PORT}
        - REPO_GITHUB=${REPO_GITHUB}
        - URL_GITHUB=${URL_GITHUB}
        - DB_HOST=${DB_HOST}
@@ -40,12 +41,12 @@ services:
     ports: 
       - ${PN_PORT}:3000
     volumes:
-      - ./nestIncidenciasNest:/var/www/html
+      - ./nestEntradasATuAlcanceNest:/var/www/html
     networks: 
       net_postgres-nest:
           ipv4_address: 172.180.10.4
     depends_on:
-      - dbIncidenciasNest
+      - dbEntradasATuAlcanceNest
 networks: 
   net_postgres-nest:
       ipam: 
