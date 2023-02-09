@@ -51,5 +51,5 @@ EXPOSE $PN_PORT
 
 RUN apt-get install nodejs nginx npm -y
 
-# ENTRYPOINT [ "/root/ub-postgres-nest-dev.sh" ]
-ENTRYPOINT [ "/root/ub-postgres-nest-prod.sh" ]
+ENTRYPOINT [ "/root/ub-postgres-nest-dev.sh" ]
+# ENTRYPOINT [ "/root/ub-postgres-nest-prod.sh" ]
