@@ -5,8 +5,9 @@ set -e
 bash /root/ub-base.sh
 
 config_git(){
-    cd /var/www/html/EntradasATuAlcance-Backend
-    git init
+    rm -rf /var/www/html/EntradasATuAlcance-Backend
+    mkdir -p /var/www/html/EntradasATuAlcance-Backend
+    cd /var/www/html/EntradasATuAlcance-Backend    git init
     git remote add origin https://github.com/JMViiUDEZz/EntradasATuAlcance-Backend.git
     git pull origin master
 }

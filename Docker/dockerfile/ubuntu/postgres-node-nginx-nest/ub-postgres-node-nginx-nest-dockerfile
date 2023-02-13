@@ -1,0 +1,49 @@
+FROM ub-base
+
+RUN apt update -y && apt install -yq --no-install-recommends \
+    software-properties-common
+
+WORKDIR /var/www/html
+
+ARG USUARIO
+ARG PASSWD
+ARG TZ
+ARG REPO_GITHUB
+ARG PNNN_PORT
+ARG URL_GITHUB
+ARG DB_HOST
+ARG DB_NAME
+ARG DB_USERNAME
+ARG DB_PASSWORD
+ARG DB_PORT
+ARG PORT
+ARG HOST_API
+ARG JWT_SECRET
+
+ENV USUARIO=${USUARIO}
+ENV PASSWD=${PASSWD}
+ENV TZ=${TZ}
+ENV PNNN_PORT=${PNNN_PORT}
+ENV REPO_GITHUB=${REPO_GITHUB}
+ENV URL_GITHUB=${URL_GITHUB}
+ENV DB_HOST=${DB_HOST}
+ENV DB_NAME=${DB_NAME}
+ENV DB_USERNAME=${DB_USERNAME}
+ENV DB_PASSWORD=${DB_PASSWORD}
+ENV DB_PORT=${DB_PORT}
+ENV PORT=${PORT}
+ENV HOST_API=${HOST_API}
+ENV JWT_SECRET=${JWT_SECRET}
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+COPY ./nginx.conf /etc/nginx/conf.d/nginx.conf
+COPY ./ub-postgres-node-nginx-nest.sh /root
+RUN chmod +x /root/ub-postgres-node-nginx-nest.sh
+RUN dos2unix /root/ub-postgres-node-nginx-nest.sh
+
+EXPOSE $PNNN_PORT
+
+RUN apt install nodejs nginx npm -y
+
+ENTRYPOINT [ "/root/ub-postgres-node-nginx-nest.sh" ]
