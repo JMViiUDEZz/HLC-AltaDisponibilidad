@@ -1,3 +1,8 @@
+echo "EL INSTALL.SH TIENE QUE ESTAR DENTRO DEL BUILD A NIVEL DEL PROYECTO"
+echo "POR LO QUE DEBERIAMOS BORRARLO"
+
+
+
 echo "Tareas (por etapas) del pipeline JenkinsFile..."
 
 echo "Instalando APP EntradasATuAlcance..."

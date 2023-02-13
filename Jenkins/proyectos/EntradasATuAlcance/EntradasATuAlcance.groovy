@@ -3,10 +3,10 @@
 job('Job-EntradasATuAlcance') {
     description('Job Padre para crear la Tarea Hija que despliegue el Proyecto EntradasATuAlcance')
     scm {
-        git('https://github.com/JMViiUDEZz/HLC-AltaDisponibilidad.git', 'master') {
+        git('https://github.com/JMViiUDEZz/Proyecto-EntradasATuAlcance.git', 'master') {
             node ->
                 node / gitConfigName('JMViiUDEZz')
-                node / gitConfigEmail('JMViiUDEZz@gmail.com')
+                node / gitConfigEmail('jmviudezp2003@gmail.com')
         }
     }
     triggers {
@@ -14,6 +14,6 @@ job('Job-EntradasATuAlcance') {
         githubPush()
     }
     steps {
-        shell('bash /build/install.sh')
+        shell('bash /build/docker.sh')
     }
 }
