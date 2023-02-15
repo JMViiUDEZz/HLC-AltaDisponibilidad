@@ -1,0 +1,38 @@
+version: "3"
+services:
+  node-nginx:
+    container_name: Node-nginx
+    image: ub-node-nginx
+    build:
+      context: ${DIR_DFILES}/ubuntu/node-nginx
+      dockerfile: ./ub-node-nginx-dockerfile
+      args:
+       - USUARIO=${USUARIO}
+       - TZ=${TZ}
+       - PASSWD=${PASSWD}
+       - PNNN_PORT=${PNNN_PORT}
+       - REPO_GITHUB=${REPO_GITHUB}
+       - URL_GITHUB=${URL_GITHUB}
+       - DB_HOST=${DB_HOST}
+       - DB_NAME=${DB_NAME}
+       - DB_USERNAME=${DB_USERNAME}
+       - DB_PASSWORD=${DB_PASSWORD}
+       - DB_PORT=${DB_PORT}
+       - PORT=${PORT}
+       - HOST_API=${HOST_API}
+       - JWT_SECRET=${JWT_SECRET}
+    env_file:
+      - ./.env
+    ports:
+      - ${NN_PORT}:3000
+    networks:
+      net_node-nginx:
+          ipv4_address: 172.30.0.7
+#    depends_on:
+#      - dbEntradasATuAlcanceNest
+networks:
+  net_node-nginx:
+      ipam:
+          driver: default
+          config:
+              - subnet: 172.30.0.0/16

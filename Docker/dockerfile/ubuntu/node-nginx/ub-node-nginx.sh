@@ -35,13 +35,20 @@ JWT_SECRET=$JWT_SECRET" > .env
 config_next(){
     cd /var/www/html/$REPO_GITHUB/app
     npm install --force
-    npm run start
+    # npm run start
+}
+
+config_nginx(){
+    cd /var/www/html/$REPO_GITHUB/app
+    npm install --force
+    # npm run start
 }
 
 main(){
     config_git
     config_nest
     config_next
+    config_nginx
 }
 
 main

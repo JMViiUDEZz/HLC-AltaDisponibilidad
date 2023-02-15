@@ -9,7 +9,7 @@ ARG USUARIO
 ARG PASSWD
 ARG TZ
 ARG REPO_GITHUB
-ARG PNNN_PORT
+ARG NN_PORT
 ARG URL_GITHUB
 ARG DB_HOST
 ARG DB_NAME
@@ -23,7 +23,7 @@ ARG JWT_SECRET
 ENV USUARIO=${USUARIO}
 ENV PASSWD=${PASSWD}
 ENV TZ=${TZ}
-ENV PNNN_PORT=${PNNN_PORT}
+ENV NN_PORT=${NN_PORT}
 ENV REPO_GITHUB=${REPO_GITHUB}
 ENV URL_GITHUB=${URL_GITHUB}
 ENV DB_HOST=${DB_HOST}
@@ -42,7 +42,7 @@ COPY ./ub-postgres-node-nginx-nest.sh /root
 RUN chmod +x /root/ub-postgres-node-nginx-nest.sh
 RUN dos2unix /root/ub-postgres-node-nginx-nest.sh
 
-EXPOSE $PNNN_PORT
+EXPOSE $NN_PORT
 
 RUN apt install nodejs nginx npm -y
 
