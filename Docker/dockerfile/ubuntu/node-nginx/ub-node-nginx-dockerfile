@@ -42,6 +42,8 @@ COPY ./ub-postgres-node-nginx-nest.sh /root
 RUN chmod +x /root/ub-postgres-node-nginx-nest.sh
 RUN dos2unix /root/ub-postgres-node-nginx-nest.sh
 
+COPY /var/lib/jenkins/workspace/Proyectos/Job-EntradasATuAlcance/app /usr/share/nginx/html
+
 EXPOSE $NN_PORT
 
 RUN apt install nodejs nginx npm -y

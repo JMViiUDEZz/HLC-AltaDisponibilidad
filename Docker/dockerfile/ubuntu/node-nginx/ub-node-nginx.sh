@@ -5,20 +5,14 @@ set -e
 bash /root/ub-base.sh
 
 config_git(){
-    rm -rf /var/www/html/$REPO_GITHUB
+    # rm -rf /var/www/html/$REPO_GITHUB
     # mkdir -p /var/www/html/$REPO_GITHUB
     # cd /var/www/html/$REPO_GITHUB
-    cd /var/www/html
-    git clone $URL_GITHUB $REPO_GITHUB --recurse-submodules
+    # cd /var/www/html
+    # git clone $URL_GITHUB $REPO_GITHUB --recurse-submodules
     # git init
     # git remote add origin $URL_GITHUB
     # git pull origin master
-}
-
-config_nest(){
-    cd /var/www/html/$REPO_GITHUB/api
-    npm i -g @nestjs/cli
-    npm install --force
     echo "DB_HOST=$DB_HOST
 DB_PORT=$DB_PORT
 DB_USERNAME=$DB_USERNAME
@@ -29,26 +23,19 @@ PORT=$PORT
 HOST_API=$HOST_API
 
 JWT_SECRET=$JWT_SECRET" > .env
-    npm run start:dev
-}
-
-config_next(){
-    cd /var/www/html/$REPO_GITHUB/app
-    npm install --force
-    # npm run start
 }
 
 config_nginx(){
-    cd /var/www/html/$REPO_GITHUB/app
+    cd /usr/share/nginx/html/app
     npm install --force
     # npm run start
+    npm run build
+    systemctl restart nginx
 }
 
 main(){
-    config_git
-    config_nest
-    config_next
-    config_nginx
+   config_git
+   config_nginx
 }
 
 main
