@@ -38,9 +38,9 @@ ENV JWT_SECRET=${JWT_SECRET}
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 COPY ./nginx.conf /etc/nginx/conf.d/nginx.conf
-COPY ./ub-postgres-node-nginx-nest.sh /root
-RUN chmod +x /root/ub-postgres-node-nginx-nest.sh
-RUN dos2unix /root/ub-postgres-node-nginx-nest.sh
+COPY ./ub-node-nginx.sh /root
+RUN chmod +x /root/ub-node-nginx.sh
+RUN dos2unix /root/ub-node-nginx.sh
 
 COPY /var/lib/jenkins/workspace/Proyectos/Job-EntradasATuAlcance/app /usr/share/nginx/html
 
