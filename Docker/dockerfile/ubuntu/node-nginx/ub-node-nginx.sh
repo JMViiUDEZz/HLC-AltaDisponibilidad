@@ -4,7 +4,7 @@ set -e
 
 bash /root/ub-base.sh
 
-config_git(){
+config_env(){
     # rm -rf /var/www/html/$REPO_GITHUB
     # mkdir -p /var/www/html/$REPO_GITHUB
     # cd /var/www/html/$REPO_GITHUB

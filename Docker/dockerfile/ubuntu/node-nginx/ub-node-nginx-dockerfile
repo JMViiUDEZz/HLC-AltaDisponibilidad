@@ -3,7 +3,7 @@ FROM ub-base
 RUN apt update -y && apt install -yq --no-install-recommends \
     software-properties-common
 
-WORKDIR /var/www/html
+WORKDIR /usr/share/nginx/html
 
 ARG USUARIO
 ARG PASSWD

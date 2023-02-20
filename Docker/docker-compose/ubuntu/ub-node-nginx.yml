@@ -10,7 +10,7 @@ services:
        - USUARIO=${USUARIO}
        - TZ=${TZ}
        - PASSWD=${PASSWD}
-       - PNNN_PORT=${PNNN_PORT}
+       - NN_PORT=${NN_PORT}
        - REPO_GITHUB=${REPO_GITHUB}
        - URL_GITHUB=${URL_GITHUB}
        - DB_HOST=${DB_HOST}
