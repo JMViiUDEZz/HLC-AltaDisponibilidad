@@ -3,11 +3,12 @@
 job('Job-EntradasATuAlcance') {
     description('Job Padre para crear la Tarea Hija que despliegue el Proyecto EntradasATuAlcance')
     scm {
-        git('https://github.com/JMViiUDEZz/Proyecto-EntradasATuAlcance.git','master') {
-            node ->
-                node / gitConfigName('JMViiUDEZz')
-                node / gitConfigEmail('jmviudezp2003@gmail.com')
-        }
+        //git('https://github.com/JMViiUDEZz/Proyecto-EntradasATuAlcance.git','master') {
+          //  node ->
+            //    node / gitConfigName('JMViiUDEZz')
+              //  node / gitConfigEmail('jmviudezp2003@gmail.com')
+        //}
+	["git", "clone", "https://github.com/JMViiUDEZz/Proyecto-EntradasATuAlcance.git"].execute()
     }
     triggers {
         //   scm('H/5 * * * *')
