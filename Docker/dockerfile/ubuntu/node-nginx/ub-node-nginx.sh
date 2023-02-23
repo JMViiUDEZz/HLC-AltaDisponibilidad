@@ -4,29 +4,29 @@ set -e
 
 bash /root/ub-base.sh
 
-config_env(){
-    # rm -rf /var/www/html/$REPO_GITHUB
-    # mkdir -p /var/www/html/$REPO_GITHUB
-    # cd /var/www/html/$REPO_GITHUB
-    # cd /var/www/html
-    # git clone $URL_GITHUB $REPO_GITHUB --recurse-submodules
+config_git(){
+    rm -rf /var/www/html/app
+    mkdir -p /var/www/html
+    cd /var/www/html
+    # cd /usr/share/nginx/html
+    git clone https://github.com/JMViiUDEZz/EntradasATuAlcance-Frontend.git app
     # git init
     # git remote add origin $URL_GITHUB
     # git pull origin master
-    echo "DB_HOST=$DB_HOST
-DB_PORT=$DB_PORT
-DB_USERNAME=$DB_USERNAME
-DB_NAME=$DB_NAME
-DB_PASSWORD=$DB_PASSWORD
+#     echo "DB_HOST=$DB_HOST
+# DB_PORT=$DB_PORT
+# DB_USERNAME=$DB_USERNAME
+# DB_NAME=$DB_NAME
+# DB_PASSWORD=$DB_PASSWORD
 
-PORT=$PORT
-HOST_API=$HOST_API
+# PORT=$PORT
+# HOST_API=$HOST_API
 
-JWT_SECRET=$JWT_SECRET" > .env
+# JWT_SECRET=$JWT_SECRET" > .env
 }
 
 config_nginx(){
-    cd /usr/share/nginx/html/app
+    cd /var/www/html/app
     npm install --force
     # npm run start
     npm run build
