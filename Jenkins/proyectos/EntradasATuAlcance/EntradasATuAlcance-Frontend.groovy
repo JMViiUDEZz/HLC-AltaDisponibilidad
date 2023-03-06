@@ -1,7 +1,7 @@
 // import jenkins-auto-approve-script.groovy
 
-job('Job-EntradasATuAlcance') {
-    description('Job Padre para crear la Tarea Hija que despliegue el Proyecto EntradasATuAlcance')
+job('Job-EntradasATuAlcance-Frontend') {
+    description('Job Padre para crear la Tarea Hija que despliegue el Proyecto EntradasATuAlcance Frontend')
     scm {
         git('https://github.com/JMViiUDEZz/EntradasATuAlcance-Frontend.git', 'master') {
             node ->
