@@ -14,6 +14,6 @@ job('Job-EntradasATuAlcance-Backend') {
         githubPush()
     }
     steps {
-        shell('bash docker.sh')
+        shell('bash docker-node.sh &&  docker-nginx.sh')
     }
 }
